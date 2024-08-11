@@ -37,8 +37,6 @@ export class SigInUseCase {
       email: user.email,
     });
 
-    console.log(tokens);
-
     return tokens;
   }
 }

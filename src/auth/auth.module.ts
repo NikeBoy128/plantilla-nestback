@@ -12,12 +12,13 @@ import { SharedUserRepository } from 'src/shared/repositories/sharedUserReposito
 @Module({
   imports: [
     TypeOrmModule.forFeature([Users]),
-    ConfigModule,
+
     JwtModule.registerAsync({
       imports: [ConfigModule],
+      // eslint-disable-next-line require-await
       useFactory: async (configService: ConfigService) => ({
         secret: configService.get<string>('JWT_SECRET'),
-        signOptions: { expiresIn: '50s' },
+        signOptions: { expiresIn: configService.get<string>('JWT_EXPIRES_IN') },
       }),
       inject: [ConfigService],
     }),
