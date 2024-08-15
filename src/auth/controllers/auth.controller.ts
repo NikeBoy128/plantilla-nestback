@@ -10,6 +10,6 @@ export class AuthController {
 
   @Post('signin')
   async sigIn(@Body() sigInDto: SignInRequestDto) {
-    return this.sigInUseCase.sigIn(sigInDto);
+    return await this.sigInUseCase.sigIn(sigInDto);
   }
 }

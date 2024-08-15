@@ -5,7 +5,7 @@ export class SignInRequestDto {
   @ApiProperty({
     type: String,
     required: true,
-    example: 'dyron@yopmail.com',
+    example: 'andrea@yopmail.com',
   })
   @IsEmail()
   email: string;

@@ -15,6 +15,7 @@ import { SharedUserRepository } from 'src/shared/repositories/sharedUserReposito
 
     JwtModule.registerAsync({
       imports: [ConfigModule],
+      global: true,
       // eslint-disable-next-line require-await
       useFactory: async (configService: ConfigService) => ({
         secret: configService.get<string>('JWT_SECRET'),
