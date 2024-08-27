@@ -5,7 +5,10 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  OneToMany,
 } from 'typeorm';
+import { Preferences } from './preferences.entity';
+import { Posts } from './post.entity';
 
 @Entity({ name: 'Users' })
 export class Users {
@@ -60,4 +63,10 @@ export class Users {
     nullable: true,
   })
   deletedAt?: Date;
+
+  @OneToMany(() => Preferences, (preference) => preference.userId)
+  preferences?: Preferences[];
+
+  @OneToMany(() => Posts, (post) => post.userCreatorId)
+  posts?: Posts[];
 }

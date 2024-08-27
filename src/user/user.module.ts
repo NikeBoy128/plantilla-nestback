@@ -8,6 +8,11 @@ import { SharedModule } from 'src/shared/shared.module';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule } from '@nestjs/config/dist/config.module';
 import { ConfigService } from '@nestjs/config';
+import { CrudPreferencesService } from './services/crudPreferences.service';
+import { CategoriesRepository } from './repositories/categoriesRepostitory.entity';
+import { UserPreferenceRepository } from './repositories/userPreference.repository';
+import { CrudUsersUseCase } from './useCase/crudUsersUseCase.useCase';
+import { GetCategoriesService } from './services/getCategories.service';
 
 @Module({
   imports: [
@@ -27,7 +32,12 @@ import { ConfigService } from '@nestjs/config';
     CrudUsersService,
     InitDataService,
     SharedUserRepository,
+    CategoriesRepository,
+    UserPreferenceRepository,
     InitDataUseCase,
+    CrudUsersUseCase,
+    CrudPreferencesService,
+    GetCategoriesService,
   ],
   controllers: [UserController],
 })
