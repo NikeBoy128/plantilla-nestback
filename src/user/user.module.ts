@@ -9,10 +9,12 @@ import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule } from '@nestjs/config/dist/config.module';
 import { ConfigService } from '@nestjs/config';
 import { CrudPreferencesService } from './services/crudPreferences.service';
-import { CategoriesRepository } from './repositories/categoriesRepostitory.entity';
+import { CategoriesRepository } from './repositories/categoriesRepostitory';
 import { UserPreferenceRepository } from './repositories/userPreference.repository';
 import { CrudUsersUseCase } from './useCase/crudUsersUseCase.useCase';
 import { GetCategoriesService } from './services/getCategories.service';
+import { CategoriesController } from './controllers/categories.controller';
+import { PasswordService } from 'src/auth/services/password.service';
 
 @Module({
   imports: [
@@ -38,7 +40,8 @@ import { GetCategoriesService } from './services/getCategories.service';
     CrudUsersUseCase,
     CrudPreferencesService,
     GetCategoriesService,
+    PasswordService,
   ],
-  controllers: [UserController],
+  controllers: [UserController, CategoriesController],
 })
 export class UserModule {}

@@ -1,7 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Preferences } from './preferences.entity';
 import { PostCategories } from './postCategories.entity';
-@Entity({ name: 'Categories' })
+@Entity('Categories')
 export class Categories {
   @PrimaryGeneratedColumn({ type: 'bigint' })
   id?: number;

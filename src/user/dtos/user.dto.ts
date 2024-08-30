@@ -13,7 +13,7 @@ export class CreateOrUpdateUserFromAdminDto {
 
   @ApiProperty({
     type: String,
-    required: true,
+    required: false,
     example: 'John',
   })
   @IsString()
@@ -21,7 +21,7 @@ export class CreateOrUpdateUserFromAdminDto {
 
   @ApiProperty({
     type: String,
-    required: true,
+    required: false,
     example: 'Doe',
   })
   @IsString()
@@ -66,5 +66,13 @@ export class CreateOrUpdateUserFromAdminDto {
     nullable: true,
   })
   @IsOptional()
-  prefrences?: string[];
+  preferences?: string[];
+
+  @ApiProperty({
+    type: String,
+    required: false,
+    nullable: true,
+  })
+  @IsString()
+  userName: string;
 }

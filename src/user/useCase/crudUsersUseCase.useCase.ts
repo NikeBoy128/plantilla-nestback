@@ -5,6 +5,7 @@ import { Users } from 'src/shared/entities/users.entity';
 import { CrudPreferencesService } from '../services/crudPreferences.service';
 import { GetCategoriesService } from '../services/getCategories.service';
 import { Preferences } from 'src/shared/entities/preferences.entity';
+import { PasswordService } from 'src/auth/services/password.service';
 
 @Injectable()
 export class CrudUsersUseCase {
@@ -12,23 +13,26 @@ export class CrudUsersUseCase {
     private readonly crudUserService: CrudUsersService,
     private readonly crudPreferencesService: CrudPreferencesService,
     private readonly crudCategoriesService: GetCategoriesService,
+    private readonly passwordService: PasswordService,
   ) {}
 
   async create(userDto: CreateOrUpdateUserFromAdminDto): Promise<number> {
     const user: Users = {
-      id: userDto.id,
-      name: userDto.name,
-      lastName: userDto.lastName,
       email: userDto.email,
       password: userDto.password,
       isActive: userDto.isActive,
+      userName: userDto.userName,
+      name: userDto.name,
+      lastName: userDto.lastName,
     };
+
+    user.password = await this.passwordService.hash(user.password);
 
     const userId = await this.crudUserService.create(user);
 
     const categories =
       await this.crudCategoriesService.getCategoriesByDescription(
-        userDto.prefrences,
+        userDto.preferences,
       );
 
     const userPreferences: Preferences[] = [];

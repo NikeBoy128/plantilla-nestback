@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CategoriesRepository } from '../repositories/categoriesRepostitory.entity';
+import { CategoriesRepository } from '../repositories/categoriesRepostitory';
 import { In } from 'typeorm';
 
 @Injectable()
@@ -10,5 +10,9 @@ export class GetCategoriesService {
     return await this.categoriesRepository.find({
       where: { description: In(description) },
     });
+  }
+
+  async getCategories() {
+    return await this.categoriesRepository.find();
   }
 }

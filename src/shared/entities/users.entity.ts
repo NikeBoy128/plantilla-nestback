@@ -17,13 +17,15 @@ export class Users {
 
   @Column('varchar', {
     length: 100,
+    nullable: true,
   })
-  name: string;
+  name?: string;
 
   @Column('varchar', {
     length: 102,
+    nullable: true,
   })
-  lastName: string;
+  lastName?: string;
 
   @Column('varchar', {
     length: 255,
@@ -38,7 +40,7 @@ export class Users {
 
   @Column('varchar', {
     length: 255,
-    nullable: true,
+    nullable: false,
   })
   password?: string;
 
@@ -47,6 +49,11 @@ export class Users {
   })
   isActive: boolean;
 
+  @Column('varchar', {
+    length: 255,
+    nullable: true,
+  })
+  userName: string;
   @CreateDateColumn({
     type: 'timestamp',
   })
